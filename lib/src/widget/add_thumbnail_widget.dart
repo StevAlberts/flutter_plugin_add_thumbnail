@@ -216,10 +216,7 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
 
             // title
             Text(widget.titleText,
-                style: Theme.of(context)
-                    .textTheme
-                    .title
-                    .copyWith(color: Colors.black54)),
+                style: Theme.of(context).textTheme.headline6),
             SizedBox(height: 16),
 
             // sub title
@@ -234,7 +231,7 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
             Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: Color(0xFFF5F5F5),
+                  color: Colors.grey.withOpacity(0.2),
                 ),
                 child: _textField),
 

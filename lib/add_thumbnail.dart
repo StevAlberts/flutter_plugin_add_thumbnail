@@ -1,13 +1,15 @@
 library add_thumbnail;
 
-export 'thumbnail_list_vew.dart';
-export 'package:add_thumbnail/src/model/media_info.dart';
 import 'package:add_thumbnail/src/bloc/bloc.dart';
 import 'package:add_thumbnail/src/model/media_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'src/widget/add_thumbnail_widget.dart';
+
+export 'package:add_thumbnail/src/model/media_info.dart';
+
+export 'thumbnail_list_vew.dart';
 
 /// A Calculator.
 class Thumbnail {
@@ -17,7 +19,7 @@ class Thumbnail {
   ///
   /// ```dart
   /// List<MediaInfo> mediaList = [];
-  /// 
+  ///
   /// void openAddLinkDialog() async {
   //  // Open add thumbnail dialog
   //   await Thumbnail.addLink(
@@ -38,32 +40,34 @@ class Thumbnail {
   /// }
   ///```
   ///
-  static Future<void> addLink({
-    BuildContext context,
-    ValueChanged<MediaInfo> onLinkAdded,
-    String titleText = "Add a media link here",
-    String subTitleText = "Paste media URL to view thumbnail",
-    String textFieldHintText = "Add link here",
-    String errorText = '"hmm, this link looks too complicated for me... Can you try another one?"'
-  }) async {
+  static Future<void> addLink(
+      {BuildContext context,
+      ValueChanged<MediaInfo> onLinkAdded,
+      String titleText = "Add a media link here",
+      String subTitleText = "Paste media URL to view thumbnail",
+      String textFieldHintText = "Add link here",
+      String errorText =
+          '"hmm, this link looks too complicated for me... Can you try another one?"'}) async {
     var media = await showDialog(
         context: context,
         child: Builder(
           builder: (context) {
             return Dialog(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0)),
                 child: MultiBlocProvider(
-              providers: [
-                BlocProvider<ThumbnailBloc>(
-                  create: (BuildContext context) => ThumbnailBloc(),
-                ),
-              ],
-              child: AddMediaDialogContent(
-                titleText: titleText,
-                subTitleText: subTitleText,
-                textFieldHintText: textFieldHintText,
-                errorText: errorText,
-              ),
-            ));
+                  providers: [
+                    BlocProvider<ThumbnailBloc>(
+                      create: (BuildContext context) => ThumbnailBloc(),
+                    ),
+                  ],
+                  child: AddMediaDialogContent(
+                    titleText: titleText,
+                    subTitleText: subTitleText,
+                    textFieldHintText: textFieldHintText,
+                    errorText: errorText,
+                  ),
+                ));
           },
         ));
     if (media != null) {
