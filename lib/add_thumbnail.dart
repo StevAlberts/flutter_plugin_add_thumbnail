@@ -49,6 +49,7 @@ class Thumbnail {
       String errorText =
           '"hmm, this link looks too complicated for me... Can you try another one?"'}) async {
     var media = await showDialog(
+        barrierDismissible: false,
         context: context,
         child: Builder(
           builder: (context) {
